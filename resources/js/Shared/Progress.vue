@@ -13,13 +13,21 @@ export default {
     data: () => ({
         value: 0
     }),
+    mounted(){
+        this.updateProgress()
+    },
     watch: {
         partial: function( val ){
-            if( !(this.total == 0 || this.partial == 0) ){
+            this.updateProgress()
+        }
+    },
+    methods:{
+        updateProgress(){
+            if( !this.total == 0 || !this.partial == 0 ){
                 let value = ( this.partial * 100 ) / this.total
                 this.value = parseInt( value )
             }
         }
-    },
+    }
 };
 </script>
